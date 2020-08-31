@@ -13,7 +13,7 @@ public class Buses {
     private Long id;
     private String startLocation;
     private String endLocation;
-    private int distance; // khoang cach
+    private Long distance; // khoang cach
     private int level; // do kho
 
     public Buses() {
@@ -43,11 +43,11 @@ public class Buses {
         this.endLocation = endLocation;
     }
 
-    public int getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(Long distance) {
         this.distance = distance;
     }
 

@@ -10,4 +10,6 @@ public interface BusesService {
     Optional<Buses> findById(Long id);
     void save(Buses buses);
     void remove(Long id);
+    List<Buses> findByLocation(String location);
+    Optional<Buses> findByDistance(Long d);
 }

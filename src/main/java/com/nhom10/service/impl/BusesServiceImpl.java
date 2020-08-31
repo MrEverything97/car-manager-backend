@@ -33,4 +33,14 @@ public class BusesServiceImpl implements BusesService {
     public void remove(Long id) {
         busesRepository.deleteById(id);
     }
+
+    @Override
+    public List<Buses> findByLocation(String location) {
+        return busesRepository.findByStartLocationContainingOrEndLocationContainingIgnoreCase(location,location);
+    }
+
+    @Override
+    public Optional<Buses> findByDistance(Long d) {
+        return busesRepository.findByDistance(d);
+    }
 }
