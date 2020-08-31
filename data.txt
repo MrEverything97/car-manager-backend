@@ -1,0 +1,20 @@
+use car;
+insert into buses (id,distance,end_location,level,start_location) values
+(1,100,"Ha Noi",3,"Hai Phong"),
+(2,30,"Ha Noi",2,"Bac Ninh"),
+(3,70,"Ha Noi",2,"Ninh Binh"),
+(4,50,"Ha Noi",2,"Ha Nam");
+insert into car(id,color,last_maintenance,license_plate,longevity,manufactured,model,seats,year_manufactured) values
+(1,"green",'2020-03-02 23:59:59',3695466,10,"honda","A01",30,2010),
+(2,"red",'2020-09-02 22:59:59',3696336,15,"yamaha","A02",40,2011),
+(3,"orange",'2020-10-02 20:59:59',3696336,20,"honda","A03",10,2009),
+(4,"yellow",'2020-10-12 20:00:59',3696336,30,"honda","A04",15,2016);
+insert into employee(id,address,birthday,full_name,id_card,id_license,license_type,seniority) values
+(1,"Hoang Hoa Tham Ha Noi",'2020-03-09',"Nguyen Van A",36954,3652,"B01",10),
+(2,"Nguyen Xien Ha Noi",'2020-03-10',"Trinh Van C",96954,5752,"B02",15),
+(3,"Vo Quy Kien Ha Noi",'2020-04-05',"Hoang Van D",36625,3662,"B01",20);
+insert into trip (id,guest_number,price,buses_id,driver_id,sub_driver_id) values
+(1,28,100,1,1,2),
+(2,38,150,2,2,3),
+(3,8,50,3,3,2),
+(4,13,80,4,2,1);
