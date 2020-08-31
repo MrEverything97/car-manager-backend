@@ -11,14 +11,14 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String licensePlate;
+    private String licensePlate; // Bien so xe
     private String color;
-    private String manufactured;
+    private String manufactured; // hang sx
     private String model;
     private String yearManufactured;
-    private int seats;
-    private int longevity;
-    private Date lastMaintenance;
+    private int seats; // so ghe
+    private int longevity; // so nam sd
+    private Date lastMaintenance; // ngay bao duong cuoi cung
 
     public Car() {
     }
