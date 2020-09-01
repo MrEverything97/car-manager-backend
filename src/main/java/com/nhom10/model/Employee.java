@@ -12,12 +12,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
-    private int idCard;
-    private int idLicense;
-    private String licenseType;
+    private int idCard; // So CMT
+    private int idLicense; // Ma GPLX
+    private String licenseType; // Loai Bang lai
     private String address;
     private Date birthday;
-    private int seniority;
+    private int seniority; // Tham nien
 
     public Employee() {
     }

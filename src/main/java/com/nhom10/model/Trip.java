@@ -2,19 +2,21 @@ package com.nhom10.model;
 
 import javax.persistence.*;
 
+
+//Chuyen xe
 @Entity
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Buses buses;
+    private Buses buses;// Tuyen xe
     @ManyToOne
-    private Employee driver;
+    private Employee driver;//tai xe
     @ManyToOne
-    private Employee subDriver;
-    private int guestNumber;
-    private float price;
+    private Employee subDriver; //phu xe
+    private int guestNumber; // so luong khach
+    private float price;// gia ve
 
     public Trip() {
     }
