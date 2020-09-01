@@ -11,14 +11,14 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String licensePlate;
+    private String licensePlate; // Bien so xe
     private String color;
-    private String manufactured;
+    private String manufactured; // hang sx
     private String model;
     private String yearManufactured;
-    private int seats;
-    private int longevity;
-    private Date lastMaintenance;
+    private Long seats; // so ghe
+    private Long longevity; // so nam sd
+    private Date lastMaintenance; // ngay bao duong cuoi cung
 
     public Car() {
     }
@@ -71,19 +71,19 @@ public class Car {
         this.yearManufactured = yearManufactured;
     }
 
-    public int getSeats() {
+    public Long getSeats() {
         return seats;
     }
 
-    public void setSeats(int seats) {
+    public void setSeats(Long seats) {
         this.seats = seats;
     }
 
-    public int getLongevity() {
+    public Long getLongevity() {
         return longevity;
     }
 
-    public void setLongevity(int longevity) {
+    public void setLongevity(Long longevity) {
         this.longevity = longevity;
     }
 

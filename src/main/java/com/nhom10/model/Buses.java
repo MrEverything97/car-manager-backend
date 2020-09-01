@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//Tuyen xe
 @Entity
 public class Buses {
     @Id
@@ -12,8 +13,8 @@ public class Buses {
     private Long id;
     private String startLocation;
     private String endLocation;
-    private int distance;
-    private int level;
+    private Long distance; // khoang cach
+    private int level; // do kho
 
     public Buses() {
     }
@@ -42,11 +43,11 @@ public class Buses {
         this.endLocation = endLocation;
     }
 
-    public int getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(Long distance) {
         this.distance = distance;
     }
 
