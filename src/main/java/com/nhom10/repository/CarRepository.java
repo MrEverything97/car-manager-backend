@@ -11,3 +11,4 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByColorContainingIgnoreCase(String color);
     List<Car> findByLicensePlateContainingOrManufacturedContainingIgnoreCase(String lp, String mf);
 }
+//abcd
