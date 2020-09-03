@@ -12,8 +12,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
-    private int idCard; // So CMT
-    private int idLicense; // Ma GPLX
+    private Long idCard; // So CMT
+    private Long idLicense; // Ma GPLX
     private String licenseType; // Loai Bang lai
     private String address;
     private Date birthday;
@@ -38,19 +38,19 @@ public class Employee {
         this.fullName = fullName;
     }
 
-    public int getIdCard() {
+    public Long getIdCard() {
         return idCard;
     }
 
-    public void setIdCard(int idCard) {
+    public void setIdCard(Long idCard) {
         this.idCard = idCard;
     }
 
-    public int getIdLicense() {
+    public Long getIdLicense() {
         return idLicense;
     }
 
-    public void setIdLicense(int idLicense) {
+    public void setIdLicense(Long idLicense) {
         this.idLicense = idLicense;
     }
 

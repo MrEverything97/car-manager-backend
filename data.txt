@@ -1,5 +1,6 @@
 use car;
 <<<<<<< HEAD
+<<<<<<< HEAD
 insert into buses (id,distance,end_location,level,start_location) values
 (1,100,"Ha Noi",3,"Hai Phong"),
 (2,30,"Ha Noi",2,"Bac Ninh"),
@@ -20,6 +21,8 @@ insert into trip (id,guest_number,price,buses_id,driver_id,sub_driver_id) values
 (3,8,50,3,3,2),
 (4,13,80,4,2,1);
 =======
+=======
+>>>>>>> 8498b85dfd0ef3a16ed27dd65b1498e310cdc712
 insert into buses (distance,end_location,level,start_location) values
 (100,"Ha Noi",2,"Hai Phong"),
 (150,"Quang Ninh",1,"Bac Ninh"),
@@ -61,5 +64,9 @@ insert into trip (guest_number,price,buses_id,driver_id,sub_driver_id) values
 (14,150,6,7,6),
 (30,150,5,9,10),
 (38,150,4,10,2),
+<<<<<<< HEAD
 (6,150,5,8,6);
 >>>>>>> 64ff87b0fda5f397cc237abb8088afab8377a3f0
+=======
+(6,150,5,8,6);
+>>>>>>> 8498b85dfd0ef3a16ed27dd65b1498e310cdc712

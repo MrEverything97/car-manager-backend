@@ -1,5 +1,6 @@
 package com.nhom10.restcontroller;
 
+
 import com.nhom10.model.Trip;
 import com.nhom10.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class TripRestController {
             return new ResponseEntity<List<Trip>>(tripList, HttpStatus.OK);
         }
     }
-    @GetMapping(value = "trip/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Trip> findTripById(@PathVariable Long id){
         Optional<Trip> trip = tripService.findById(id);
         Trip trip1 = trip.get();
@@ -68,6 +69,28 @@ public class TripRestController {
         }else {
             tripService.remove(id);
             return new ResponseEntity<Trip>(HttpStatus.NO_CONTENT);
+        }
+    }
+    //findByGuestNumber
+    @GetMapping(value = "/find-by-guest-number/{number}")
+    public ResponseEntity<Trip> findByGuestNumber(@PathVariable("number") int number ) {
+        Optional<Trip> trip = tripService.findByGuestNumber(number);
+        Trip trip1 = trip.get();
+        if (trip1 == null) {
+            return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<Trip>(trip1, HttpStatus.OK);
+        }
+    }
+    //findByPrice
+    @GetMapping(value = "/find-by-price/{price}")
+    public ResponseEntity<Trip> findByPrice(@PathVariable("price") float price ) {
+        Optional<Trip> trip = tripService.findByPrice(price);
+        Trip trip1 = trip.get();
+        if (trip1 == null) {
+            return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<Trip>(trip1, HttpStatus.OK);
         }
     }
 }

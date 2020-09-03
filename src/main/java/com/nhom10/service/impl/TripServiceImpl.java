@@ -32,4 +32,14 @@ public class TripServiceImpl implements TripService {
     public void remove(Long id) {
         tripRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Trip> findByGuestNumber(int id) {
+        return tripRepository.findByGuestNumber(id);
+    }
+
+    @Override
+    public Optional<Trip> findByPrice(float id) {
+        return tripRepository.findByPrice(id);
+    }
 }
