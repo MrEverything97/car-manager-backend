@@ -29,7 +29,7 @@ public class EmployeeRestController {
         }
     }
 
-    @GetMapping(value = "employee/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Employee> findEmployeeById(@PathVariable Long id) {
         Optional<Employee> employee = employeeService.findById(id);
         Employee employee1 = employee.get();
