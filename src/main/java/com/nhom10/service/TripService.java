@@ -10,4 +10,6 @@ public interface TripService {
     Optional<Trip> findById(Long id);
     void save(Trip trip);
     void remove(Long id);
+    Optional<Trip> findByGuestNumber(int id);
+    Optional<Trip> findByPrice(float id);
 }

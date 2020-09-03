@@ -32,4 +32,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void remove(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    @Override
+    public List<Employee> findByName(String name) {
+        return employeeRepository.findByFullNameContainingIgnoreCase(name);
+    }
+
+
+    public Optional<Employee> findByCard(Long card) {
+        return employeeRepository.findByIdCardOrIdLicense(card,card);
+    }
+
+
 }
