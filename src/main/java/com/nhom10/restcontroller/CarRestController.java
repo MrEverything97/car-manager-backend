@@ -1,5 +1,6 @@
 package com.nhom10.restcontroller;
 
+import com.nhom10.model.Buses;
 import com.nhom10.model.Car;
 import com.nhom10.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +74,37 @@ public class CarRestController {
             return new ResponseEntity<Car>(HttpStatus.NO_CONTENT);
         }
     }
+    //Tim kiem theo mau sac
+    @GetMapping(value= "/find-by-color/{color}")
+    public ResponseEntity<List<Car>> findByColor(@PathVariable("color") String color){
+        List<Car> carsList=carService.findByColor(color);
+        if (carsList.isEmpty()){
+            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
+        }
+    }
+    //Tim kiem theo bien so xe
+    @GetMapping(value= "/find-by-license-plate/{lp}")
+    public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
+        List<Car> carsList=carService.findByLicensePlate(lp);
+        if(carsList.isEmpty()){
+            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
+        }
+    }
+    // Tim kiem theo hang san xuat
+    @GetMapping(value= "/find-by-manufactured/{mf}")
+    public ResponseEntity<List<Car>> findByManufactured(@PathVariable("mf") String mf){
+        List<Car> carsList = carService.findByManufactured(mf);
+        if(carsList.isEmpty()){
+            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
+        }
+    }
+
 }
