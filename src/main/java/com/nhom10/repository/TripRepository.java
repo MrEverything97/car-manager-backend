@@ -2,6 +2,7 @@ package com.nhom10.repository;
 
 import com.nhom10.model.Employee;
 import com.nhom10.model.Trip;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
