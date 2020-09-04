@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/car")
+@CrossOrigin("*")
 public class CarRestController {
     @Autowired
     private CarService carService;

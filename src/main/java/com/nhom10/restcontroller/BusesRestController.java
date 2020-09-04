@@ -34,7 +34,6 @@ public class BusesRestController {
         if (buses1 == null){
             return new ResponseEntity<Buses>(HttpStatus.NOT_FOUND);
         }else {
-            busesService.save(buses1);
             return new ResponseEntity<Buses>(buses1,HttpStatus.OK);
         }
     }
