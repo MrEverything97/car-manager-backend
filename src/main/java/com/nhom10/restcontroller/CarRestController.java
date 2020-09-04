@@ -85,7 +85,7 @@ public class CarRestController {
         }
     }
     //Tim kiem theo bien so xe
-    @GetMapping(value= "/find-by-licenseplate/{lp}")
+    @GetMapping(value= "/find-by-license-plate/{lp}")
     public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
         List<Car> carsList=carService.findByLicensePlate(lp);
         if(carsList.isEmpty()){

@@ -1,6 +1,7 @@
 package com.nhom10.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 //Chuyen xe
