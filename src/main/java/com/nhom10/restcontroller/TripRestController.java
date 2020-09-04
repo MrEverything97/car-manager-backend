@@ -27,7 +27,7 @@ public class TripRestController {
             return new ResponseEntity<List<Trip>>(tripList, HttpStatus.OK);
         }
     }
-    @GetMapping(value = "trip/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Trip> findTripById(@PathVariable Long id){
         Optional<Trip> trip = tripService.findById(id);
         Trip trip1 = trip.get();

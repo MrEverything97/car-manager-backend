@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/car")
+@CrossOrigin("*")
 public class CarRestController {
     @Autowired
     private CarService carService;
@@ -27,7 +27,7 @@ public class CarRestController {
             return new ResponseEntity<List<Car>>(carList, HttpStatus.OK);
         }
     }
-    @GetMapping(value = "car/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Car> findCarById(@PathVariable Long id){
         Optional<Car> car = carService.findById(id);
         Car car1 = car.get();
