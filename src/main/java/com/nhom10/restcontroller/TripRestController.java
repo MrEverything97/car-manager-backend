@@ -83,7 +83,7 @@ public class TripRestController {
         }
     }
     //findByPrice
-    @GetMapping(value = "/find-by-price/{price}")
+    @GetMapping(value = "/find-by-price/{ }")
     public ResponseEntity<Trip> findByPrice(@PathVariable("price") float price ) {
         Optional<Trip> trip = tripService.findByPrice(price);
         Trip trip1 = trip.get();

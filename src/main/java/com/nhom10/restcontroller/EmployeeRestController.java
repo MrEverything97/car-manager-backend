@@ -79,7 +79,7 @@ public class EmployeeRestController {
     }
 
     //tim kiem theo ten nhan vien
-    @GetMapping(value = "/find-by-name/{name}")
+    @GetMapping(value = "/find-by-full-name/{name}")
     public ResponseEntity<List<Employee>> findByName(@PathVariable("name") String name) {
         List<Employee> employeeList = employeeService.findByName(name);
         if (employeeList == null) {
