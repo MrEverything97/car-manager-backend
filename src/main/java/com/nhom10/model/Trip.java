@@ -1,6 +1,7 @@
 package com.nhom10.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 //Chuyen xe
@@ -17,6 +18,7 @@ public class Trip {
     private Employee subDriver; //phu xe
     private int guestNumber; // so luong khach
     private float price;// gia ve
+    private Date departureDate;
     @ManyToOne
     private Car car;
 
