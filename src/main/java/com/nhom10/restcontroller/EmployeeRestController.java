@@ -1,5 +1,6 @@
 package com.nhom10.restcontroller;
 
+import com.nhom10.model.Car;
 import com.nhom10.model.Employee;
 import com.nhom10.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,9 @@ public class EmployeeRestController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Employee> findEmployeeById(@PathVariable Long id) {
-        Optional<Employee> employee = employeeService.findById(id);
-        Employee employee1 = employee.get();
-        if (employee1 == null) {
-            return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
-        } else {
-            employeeService.save(employee1);
-            return new ResponseEntity<Employee>(employee1, HttpStatus.OK);
-        }
+        Optional<Employee> optionalEmployee = employeeService.findById(id);
+        return optionalEmployee.map(employee -> new ResponseEntity<>(employee, HttpStatus.FOUND))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping(value = "/create")
@@ -50,27 +46,26 @@ public class EmployeeRestController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        Optional<Employee> employee1 = employeeService.findById(id);
-        Employee employee2 = employee1.get();
-        if (employee2 == null) {
+        Optional<Employee> optionalEmployee = employeeService.findById(id);
+        if (!optionalEmployee.isPresent()) {
             return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
         } else {
-            employee2.setFullName(employee.getFullName());
-            employee2.setIdCard(employee.getIdCard());
-            employee2.setIdLicense(employee.getIdLicense());
-            employee2.setLicenseType(employee.getLicenseType());
-            employee2.setAddress(employee.getAddress());
-            employee2.setBirthday(employee.getBirthday());
-            employee2.setSeniority(employee.getSeniority());
-            employeeService.save(employee2);
-            return new ResponseEntity<Employee>(employee2, HttpStatus.OK);
+            employee.setFullName(employee.getFullName());
+            employee.setIdCard(employee.getIdCard());
+            employee.setIdLicense(employee.getIdLicense());
+            employee.setLicenseType(employee.getLicenseType());
+            employee.setAddress(employee.getAddress());
+            employee.setBirthday(employee.getBirthday());
+            employee.setSeniority(employee.getSeniority());
+            employeeService.save(employee);
+            return new ResponseEntity<Employee>(employee, HttpStatus.OK);
         }
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Employee> deleteEmployee(@PathVariable Long id) {
         Optional<Employee> employee = employeeService.findById(id);
-        if (employee == null) {
+        if (!employee.isPresent()) {
             return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
         } else {
             employeeService.remove(id);
@@ -91,13 +86,9 @@ public class EmployeeRestController {
 
     //tim kiem theo ma nhan vien
     @GetMapping(value = "/find-by-id-card/{card}")
-    public ResponseEntity<Employee> findBycard(@PathVariable("card") Long card ) {
-        Optional<Employee> employee = employeeService.findByCard(card);
-        Employee employee1 = employee.get();
-        if (employee1 == null) {
-            return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<Employee>(employee1, HttpStatus.OK);
-        }
+    public ResponseEntity<Employee> findByCard(@PathVariable("card") Long card ) {
+        Optional<Employee> optionalEmployee = employeeService.findByCard(card);
+        return optionalEmployee.map(employee -> new ResponseEntity<>(employee, HttpStatus.FOUND))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
