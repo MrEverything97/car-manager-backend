@@ -80,7 +80,7 @@ public class BusesRestController {
     }
     //tim kiem theo khoang cach quang duong
     @GetMapping(value = "/find-by-distance/{d}")
-    public ResponseEntity<Buses> findByDistance(@PathVariable("d") Long d ) {
+    public ResponseEntity<Buses> findByDistance(@PathVariable Long d ) {
         Optional<Buses> buses = busesService.findByDistance(d);
         Buses buses1 = buses.get();
         if (buses1 == null) {

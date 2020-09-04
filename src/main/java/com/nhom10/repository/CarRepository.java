@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByColorContainingIgnoreCase(String color);
-    List<Car> findByLicensePlateContainingOrManufacturedContainingIgnoreCase(String lp, String mf);
+    List<Car> findByLicensePlateContainingIgnoreCase(String lp); // tach ra 2 nhanh
+    List<Car> findByManufacturedContainingIgnoreCase(String mf);
 }

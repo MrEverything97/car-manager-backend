@@ -10,4 +10,6 @@ public interface EmployeeService {
     Optional<Employee> findById(Long id);
     void save(Employee employee);
     void remove(Long id);
+    List<Employee> findByName(String name);
+    Optional<Employee> findByCard(Long card);
 }

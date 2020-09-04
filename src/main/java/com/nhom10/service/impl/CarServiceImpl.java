@@ -32,4 +32,19 @@ public class CarServiceImpl implements CarService {
     public void remove(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Override
+    public List<Car> findByColor(String color) {
+        return carRepository.findByColorContainingIgnoreCase(color);
+    }
+
+    @Override
+    public List<Car> findByLicensePlate(String lp) {
+        return carRepository.findByLicensePlateContainingIgnoreCase(lp);
+    }
+
+    @Override
+    public List<Car> findByManufactured(String mf) {
+        return carRepository.findByManufacturedContainingIgnoreCase(mf);
+    }
 }
