@@ -12,4 +12,5 @@ public interface TripService {
     void remove(Long id);
     Optional<Trip> findByGuestNumber(int id);
     Optional<Trip> findByPrice(float id);
+
 }

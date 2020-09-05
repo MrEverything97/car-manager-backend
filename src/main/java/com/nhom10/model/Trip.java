@@ -18,6 +18,7 @@ public class Trip {
     private Employee subDriver; //phu xe
     private int guestNumber; // so luong khach
     private float price;// gia ve
+    private Date departureDate;
     @ManyToOne
     private Car car;
 
