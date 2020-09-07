@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class Employee {
     private Long idLicense; // Ma GPLX
     private String licenseType; // Loai Bang lai
     private String address;
-    private Date birthday;
+    private LocalDate birthday;
     private int seniority; // Tham nien
 
     public Employee() {
@@ -70,11 +71,11 @@ public class Employee {
         this.address = address;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

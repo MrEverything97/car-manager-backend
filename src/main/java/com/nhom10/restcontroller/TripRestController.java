@@ -48,7 +48,7 @@ public class TripRestController {
         if (!optionalTrip.isPresent()){
             return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
         }else {
-            trip.setTrip(trip.getTrip());
+            trip.setBuses(trip.getBuses());
             trip.setDriver(trip.getDriver());
             trip.setSubDriver(trip.getSubDriver());
             trip.setGuestNumber(trip.getGuestNumber());
