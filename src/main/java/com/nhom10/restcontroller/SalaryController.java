@@ -19,14 +19,14 @@ import java.util.List;
 public class SalaryController {
     @Autowired
     private SalaryService salaryService;
-    @GetMapping("/salary")
-    public ResponseEntity<List<Salary>> showListSalary(@RequestBody Trip trip){
-        List<Salary>salaryList;
-        salaryList = salaryService.countTrip(trip);
-        if (salaryList.isEmpty()){
-            return new ResponseEntity<List<Salary>>(HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<List<Salary>>(salaryList, HttpStatus.OK);
-        }
-    }
+//    @GetMapping("/salary")
+//    public ResponseEntity<List<Salary>> showListSalary(){
+//        List<Salary>salaryList;
+//        salaryList = salaryService.countEmployee();
+//        if (salaryList.isEmpty()){
+//            return new ResponseEntity<List<Salary>>(HttpStatus.NOT_FOUND);
+//        }else {
+//            return new ResponseEntity<List<Salary>>(salaryList, HttpStatus.OK);
+//        }
+//    }
 }

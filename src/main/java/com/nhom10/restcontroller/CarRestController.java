@@ -1,6 +1,7 @@
 package com.nhom10.restcontroller;
 
 import com.nhom10.model.Car;
+import com.nhom10.model.Car;
 import com.nhom10.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,8 +31,9 @@ public class CarRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Car> findCarById(@PathVariable Long id){
         Optional<Car> optionalCar = carService.findById(id);
-        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Car car = optionalCar.get();
+        return new ResponseEntity<Car>(car,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createCar(@RequestBody Car car){

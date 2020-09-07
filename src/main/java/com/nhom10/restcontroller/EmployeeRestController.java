@@ -1,5 +1,6 @@
 package com.nhom10.restcontroller;
 
+import com.nhom10.model.Employee;
 import com.nhom10.model.Car;
 import com.nhom10.model.Employee;
 import com.nhom10.service.EmployeeService;
@@ -33,8 +34,9 @@ public class EmployeeRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Employee> findEmployeeById(@PathVariable Long id) {
         Optional<Employee> optionalEmployee = employeeService.findById(id);
-        return optionalEmployee.map(employee -> new ResponseEntity<>(employee, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Employee employee = optionalEmployee.get();
+        return new ResponseEntity<Employee>(employee,HttpStatus.OK);
+
     }
 
     @PostMapping(value = "/create")
