@@ -2,6 +2,7 @@ package com.nhom10.restcontroller;
 
 
 import com.nhom10.model.Trip;
+import com.nhom10.model.Trip;
 import com.nhom10.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,8 +32,9 @@ public class TripRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Trip> findTripById(@PathVariable Long id){
         Optional<Trip> optionalTrip = tripService.findById(id);
-        return optionalTrip.map(trip -> new ResponseEntity<>(trip, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Trip trip = optionalTrip.get();
+        return new ResponseEntity<Trip>(trip,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createTrip(@RequestBody Trip trip){
@@ -46,7 +48,7 @@ public class TripRestController {
         if (!optionalTrip.isPresent()){
             return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
         }else {
-            trip.setBuses(trip.getBuses());
+            trip.setTrip(trip.getTrip());
             trip.setDriver(trip.getDriver());
             trip.setSubDriver(trip.getSubDriver());
             trip.setGuestNumber(trip.getGuestNumber());

@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByColorContainingIgnoreCase(String color);
-    List<Car> findByLicensePlateContainingIgnoreCase(String lp); // tach ra 2 nhanh
+    Optional<Car> findByLicensePlateContainingIgnoreCase(String lp); // tach ra 2 nhanh
     List<Car> findByManufacturedContainingIgnoreCase(String mf);
 }

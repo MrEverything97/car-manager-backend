@@ -1,6 +1,7 @@
 package com.nhom10.restcontroller;
 
 import com.nhom10.model.Car;
+import com.nhom10.model.Car;
 import com.nhom10.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,8 +31,9 @@ public class CarRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Car> findCarById(@PathVariable Long id){
         Optional<Car> optionalCar = carService.findById(id);
-        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Car car = optionalCar.get();
+        return new ResponseEntity<Car>(car,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createCar(@RequestBody Car car){
@@ -79,13 +81,10 @@ public class CarRestController {
     }
     //Tim kiem theo bien so xe
     @GetMapping(value= "/find-by-license-plate/{lp}")
-    public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
-        List<Car> carsList = carService.findByLicensePlate(lp);
-        if (carsList.isEmpty()){
-            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
-        }
+    public ResponseEntity<Car> findByLicensePlate(@PathVariable("lp") String lp){
+        Optional<Car> optionalCar = carService.findByLicensePlate(lp);
+        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 //    // Tim kiem theo hang san xuat
 //    @GetMapping(value= "/find-by-manufactured/{mf}")

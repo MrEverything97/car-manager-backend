@@ -30,8 +30,9 @@ public class BusesRestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Buses> findBusesById(@PathVariable Long id){
         Optional<Buses> optionalBuses = busesService.findById(id);
-        return optionalBuses.map(buses -> new ResponseEntity<>(buses, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Buses buses = optionalBuses.get();
+       return new ResponseEntity<Buses>(buses,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createBuses(@RequestBody Buses buses){

@@ -39,7 +39,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> findByLicensePlate(String lp) {
+    public Optional<Car> findByLicensePlate(String lp) {
         return carRepository.findByLicensePlateContainingIgnoreCase(lp);
     }
 

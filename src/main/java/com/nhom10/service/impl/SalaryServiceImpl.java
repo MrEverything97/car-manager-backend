@@ -14,6 +14,7 @@ import java.util.Optional;
 public class SalaryServiceImpl implements SalaryService {
     @Autowired
     private SalaryRepository salaryRepository;
+
     @Override
     public List<Salary> findAll() {
         return salaryRepository.findAll();
@@ -34,8 +35,9 @@ public class SalaryServiceImpl implements SalaryService {
         salaryRepository.deleteById(id);
     }
 
-    @Override
-    public List<Salary> countTrip(Trip trip) {
-        return salaryRepository.countAllByTrip(trip);
-    }
+//    @Override
+//    public List<Salary> countEmployee() {
+//        return salaryRepository.countAllByEmployee();
+//    }
+
 }

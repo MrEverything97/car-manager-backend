@@ -11,5 +11,5 @@ public interface SalaryService {
     Optional<Salary> findById(Long id);
     void save(Salary salary);
     void remove(Long id);
-    List<Salary> countTrip(Trip trip);
+//    List<Salary> countEmployee();
 }
