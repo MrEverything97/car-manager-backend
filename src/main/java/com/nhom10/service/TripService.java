@@ -11,6 +11,6 @@ public interface TripService {
     void save(Trip trip);
     void remove(Long id);
     Optional<Trip> findByGuestNumber(int id);
-    Optional<Trip> findByPrice(float id);
+    List<Trip> findByPrice(float id);
 
 }

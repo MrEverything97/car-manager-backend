@@ -1,7 +1,7 @@
 package com.nhom10.restcontroller;
 
 
-import com.nhom10.model.Trip;
+import com.nhom10.model.Car;
 import com.nhom10.model.Trip;
 import com.nhom10.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class TripRestController {
         if (!optionalTrip.isPresent()){
             return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
         }else {
-            trip.setTrip(trip.getTrip());
+            trip.setBuses(trip.getBuses());
             trip.setDriver(trip.getDriver());
             trip.setSubDriver(trip.getSubDriver());
             trip.setGuestNumber(trip.getGuestNumber());
@@ -76,10 +76,13 @@ public class TripRestController {
     }
     //findByPrice
     @GetMapping(value = "/find-by-price/{price}")
-    public ResponseEntity<Trip> findByPrice(@PathVariable("price") float price ) {
-        Optional<Trip> optionalTrip = tripService.findByPrice(price);
-        return optionalTrip.map(trip-> new ResponseEntity<>(trip, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<List<Trip>> findByPrice(@PathVariable("price") float price ) {
+        List<Trip> tripList=tripService.findByPrice(price);
+        if (tripList.isEmpty()){
+            return new ResponseEntity<List<Trip>>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<List<Trip>>(tripList,HttpStatus.OK);
+        }
     }
 //    @GetMapping("/count-trip-by-driver")
 //    public ResponseEntity<List<Trip>> showTripCountList(@RequestBody Long id){

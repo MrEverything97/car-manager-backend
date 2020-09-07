@@ -11,6 +11,6 @@ public interface CarService {
     void save(Car car);
     void remove(Long id);
     List<Car> findByColor(String color);
-    Optional<Car> findByLicensePlate(String lp);
+    List<Car> findByLicensePlate(String lp);
     List<Car> findByManufactured(String mf);
 }
