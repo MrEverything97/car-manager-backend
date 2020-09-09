@@ -69,23 +69,23 @@ public class CarRestController {
             return new ResponseEntity<Car>(HttpStatus.NO_CONTENT);
         }
     }
-    //Tim kiem theo mau sac
-    @GetMapping(value= "/find-by-color/{color}")
-    public ResponseEntity<List<Car>> findByColor(@PathVariable("color") String color){
-        List<Car> carsList=carService.findByColor(color);
+    //Tim kiem theo bien so xe
+    @GetMapping(value= "/find-by-license-plate/{lp}")
+    public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
+        List<Car> carsList=carService.findByLicensePlate(lp);
         if (carsList.isEmpty()){
             return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
         }
     }
-    //Tim kiem theo bien so xe
-    @GetMapping(value= "/find-by-license-plate/{lp}")
-    public ResponseEntity<Car> findByLicensePlate(@PathVariable("lp") String lp){
-        Optional<Car> optionalCar = carService.findByLicensePlate(lp);
-        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+//    //Tim kiem theo bien so xe
+//    @GetMapping(value= "/find-by-license-plate/{lp}")
+//    public ResponseEntity<Car> findByLicensePlate(@PathVariable("lp") String lp){
+//        Optional<Car> optionalCar = carService.findByLicensePlate(lp);
+//        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
+//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
 //    // Tim kiem theo hang san xuat
 //    @GetMapping(value= "/find-by-manufactured/{mf}")
 //    public ResponseEntity<Car> findByManufactured(@PathVariable("mf") String mf){
