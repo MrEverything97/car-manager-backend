@@ -53,17 +53,17 @@ insert into employee(address,birthday,full_name,id_card,id_license,license_type,
 ("Long Bien Ha Noi",'1965-04-09',"Le Hoang Hai",96725,011179095565,"B2",20),
 ("Thanh Tri Ha Noi",'1962-04-09',"Le Van Tam",92525,011119095565,"B2",20),
 ("Hai Ba Trung Ha Noi",'1969-04-30',"Nguyen Van Vy",77525,110179095565,"B2",30);
-insert into trip (guest_number,price,buses_id,car_id,sub_driver_id) values
-(28,7000000,1,1,2),
-(38,8360000,2,2,3),
-(38,9500000,3,3,2),
-(23,5750000,4,2,1),
-(44,11000000,4,3,4),
-(56,14000000,5,5,6),
-(30,7500000,7,5,4),
-(44,11000000,6,7,6),
-(40,10000000,5,9,10),
-(38,9500000,4,10,2),
-(36,7920000,5,8,6);
+insert into trip (guest_number,price,buses_id,car_id,driver_id,sub_driver_id) values
+(28,7000000,1,1,2,2),
+(38,8360000,2,2,3,1),
+(38,9500000,3,3,2,3),
+(23,5750000,4,2,1,4),
+(44,11000000,4,3,4,5),
+(56,14000000,5,5,6,6),
+(30,7500000,7,5,4,8),
+(44,11000000,6,7,6,9),
+(40,10000000,5,9,10,12),
+(38,9500000,4,10,2,13),
+(36,7920000,5,8,6,4);
 INSERT INTO salary (id, employee_id, trip_id) VALUES
 ('1', '1', '1');

@@ -94,4 +94,5 @@ public class TripRestController {
 //            return new ResponseEntity<List<Trip>>(tripList, HttpStatus.OK);
 //        }
 //    }
+
 }
