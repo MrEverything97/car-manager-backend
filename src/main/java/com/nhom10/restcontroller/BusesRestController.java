@@ -29,13 +29,10 @@ public class BusesRestController {
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<Buses> findBusesById(@PathVariable Long id){
-        Optional<Buses> buses = busesService.findById(id);
-        Buses buses1 = buses.get();
-        if (buses1 == null){
-            return new ResponseEntity<Buses>(HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<Buses>(buses1,HttpStatus.OK);
-        }
+        Optional<Buses> optionalBuses = busesService.findById(id);
+        Buses buses = optionalBuses.get();
+       return new ResponseEntity<Buses>(buses,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createBuses(@RequestBody Buses buses){
@@ -45,23 +42,22 @@ public class BusesRestController {
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<Buses> updateBuses(@PathVariable Long id, @RequestBody Buses buses){
-        Optional<Buses> buses1 = busesService.findById(id);
-        Buses buses2 = buses1.get();
-        if (buses2 == null){
+        Optional<Buses> optionalBuses = busesService.findById(id);
+        if (!optionalBuses.isPresent()){
             return new ResponseEntity<Buses>(HttpStatus.NOT_FOUND);
         }else {
-            buses2.setStartLocation(buses.getStartLocation());
-            buses2.setEndLocation(buses.getEndLocation());
-            buses2.setDistance(buses.getDistance());
-            buses2.setLevel(buses.getLevel());
-            busesService.save(buses2);
-            return new ResponseEntity<Buses>(buses2,HttpStatus.OK);
+            buses.setStartLocation(buses.getStartLocation());
+            buses.setEndLocation(buses.getEndLocation());
+            buses.setDistance(buses.getDistance());
+            buses.setLevel(buses.getLevel());
+            busesService.save(buses);
+            return new ResponseEntity<Buses>(buses,HttpStatus.OK);
         }
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Buses> deleteBuses(@PathVariable Long id){
         Optional<Buses> buses = busesService.findById(id);
-        if (buses == null){
+        if (!buses.isPresent()){
             return new ResponseEntity<Buses>(HttpStatus.NOT_FOUND);
         }else {
             busesService.remove(id);
@@ -81,12 +77,8 @@ public class BusesRestController {
     //tim kiem theo khoang cach quang duong
     @GetMapping(value = "/find-by-distance/{d}")
     public ResponseEntity<Buses> findByDistance(@PathVariable Long d ) {
-        Optional<Buses> buses = busesService.findByDistance(d);
-        Buses buses1 = buses.get();
-        if (buses1 == null) {
-            return new ResponseEntity<Buses>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<Buses>(buses1, HttpStatus.OK);
-        }
+        Optional<Buses> optionalBuses = busesService.findByDistance(d);
+        return optionalBuses.map(buses -> new ResponseEntity<>(buses, HttpStatus.FOUND))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

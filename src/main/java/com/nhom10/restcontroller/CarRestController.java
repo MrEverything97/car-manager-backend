@@ -1,6 +1,6 @@
 package com.nhom10.restcontroller;
 
-import com.nhom10.model.Buses;
+import com.nhom10.model.Car;
 import com.nhom10.model.Car;
 import com.nhom10.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +30,10 @@ public class CarRestController {
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<Car> findCarById(@PathVariable Long id){
-        Optional<Car> car = carService.findById(id);
-        Car car1 = car.get();
-        if (car1 == null){
-            return new ResponseEntity<Car>(HttpStatus.NOT_FOUND);
-        }else {
-            carService.save(car1);
-            return new ResponseEntity<Car>(car1,HttpStatus.OK);
-        }
+        Optional<Car> optionalCar = carService.findById(id);
+        Car car = optionalCar.get();
+        return new ResponseEntity<Car>(car,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createCar(@RequestBody Car car){
@@ -47,64 +43,54 @@ public class CarRestController {
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car car){
-        Optional<Car> car1 = carService.findById(id);
-        Car car2 = car1.get();
-        if (car2 == null){
+        Optional<Car> optionalCar = carService.findById(id);
+        if (!optionalCar.isPresent()){
             return new ResponseEntity<Car>(HttpStatus.NOT_FOUND);
         }else {
-            car2.setLicensePlate(car.getLicensePlate());
-            car2.setColor(car.getColor());
-            car2.setManufactured(car.getManufactured());
-            car2.setModel(car.getModel());
-            car2.setYearManufactured(car.getYearManufactured());
-            car2.setSeats(car.getSeats());
-            car2.setLongevity(car.getLongevity());
-            car2.setLastMaintenance(car.getLastMaintenance());
-            carService.save(car2);
-            return new ResponseEntity<Car>(car2,HttpStatus.OK);
+            car.setLicensePlate(car.getLicensePlate());
+            car.setColor(car.getColor());
+            car.setManufactured(car.getManufactured());
+            car.setModel(car.getModel());
+            car.setYearManufactured(car.getYearManufactured());
+            car.setSeats(car.getSeats());
+            car.setLongevity(car.getLongevity());
+            car.setLastMaintenance(car.getLastMaintenance());
+            carService.save(car);
+            return new ResponseEntity<Car>(car,HttpStatus.OK);
         }
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Car> deleteCar(@PathVariable Long id){
         Optional<Car> car = carService.findById(id);
-        if (car == null){
+        if (!car.isPresent()){
             return new ResponseEntity<Car>(HttpStatus.NOT_FOUND);
         }else {
             carService.remove(id);
             return new ResponseEntity<Car>(HttpStatus.NO_CONTENT);
         }
     }
-    //Tim kiem theo mau sac
-    @GetMapping(value= "/find-by-color/{color}")
-    public ResponseEntity<List<Car>> findByColor(@PathVariable("color") String color){
-        List<Car> carsList=carService.findByColor(color);
+    //Tim kiem theo bien so xe
+    @GetMapping(value= "/find-by-license-plate/{lp}")
+    public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
+        List<Car> carsList=carService.findByLicensePlate(lp);
         if (carsList.isEmpty()){
             return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
         }else {
             return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
         }
     }
-    //Tim kiem theo bien so xe
-    @GetMapping(value= "/find-by-licenseplate/{lp}")
-    public ResponseEntity<List<Car>> findByLicensePlate(@PathVariable("lp") String lp){
-        List<Car> carsList=carService.findByLicensePlate(lp);
-        if(carsList.isEmpty()){
-            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
-        }
-        else{
-            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
-        }
-    }
-    // Tim kiem theo hang san xuat
-    @GetMapping(value= "/find-by-manufactured/{mf}")
-    public ResponseEntity<List<Car>> findByManufactured(@PathVariable("mf") String mf){
-        List<Car> carsList = carService.findByManufactured(mf);
-        if(carsList.isEmpty()){
-            return new ResponseEntity<List<Car>>(HttpStatus.NOT_FOUND);
-        }
-        else{
-            return new ResponseEntity<List<Car>>(carsList,HttpStatus.OK);
-        }
-    }
+//    //Tim kiem theo bien so xe
+//    @GetMapping(value= "/find-by-license-plate/{lp}")
+//    public ResponseEntity<Car> findByLicensePlate(@PathVariable("lp") String lp){
+//        Optional<Car> optionalCar = carService.findByLicensePlate(lp);
+//        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
+//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
+//    // Tim kiem theo hang san xuat
+//    @GetMapping(value= "/find-by-manufactured/{mf}")
+//    public ResponseEntity<Car> findByManufactured(@PathVariable("mf") String mf){
+//        Optional<Car> optionalCar = carService.findByManufactured(mf);
+//        return optionalCar.map(car -> new ResponseEntity<>(car, HttpStatus.FOUND))
+//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
 }

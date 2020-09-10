@@ -1,9 +1,12 @@
 package com.nhom10.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,7 +21,7 @@ public class Car {
     private String yearManufactured;
     private Long seats; // so ghe
     private Long longevity; // so nam sd
-    private Date lastMaintenance; // ngay bao duong cuoi cung
+    private LocalDate lastMaintenance; // ngay bao duong cuoi cung
 
     public Car() {
     }
@@ -87,11 +90,11 @@ public class Car {
         this.longevity = longevity;
     }
 
-    public Date getLastMaintenance() {
+    public LocalDate getLastMaintenance() {
         return lastMaintenance;
     }
 
-    public void setLastMaintenance(Date lastMaintenance) {
+    public void setLastMaintenance(LocalDate lastMaintenance) {
         this.lastMaintenance = lastMaintenance;
     }
 }

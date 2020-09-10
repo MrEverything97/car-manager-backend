@@ -39,7 +39,7 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Optional<Trip> findByPrice(float id) {
+    public List<Trip> findByPrice(float id) {
         return tripRepository.findByPrice(id);
     }
 }

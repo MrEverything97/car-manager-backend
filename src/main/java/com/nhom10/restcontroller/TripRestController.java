@@ -1,6 +1,7 @@
 package com.nhom10.restcontroller;
 
 
+import com.nhom10.model.Car;
 import com.nhom10.model.Trip;
 import com.nhom10.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,10 @@ public class TripRestController {
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<Trip> findTripById(@PathVariable Long id){
-        Optional<Trip> trip = tripService.findById(id);
-        Trip trip1 = trip.get();
-        if (trip1 == null){
-            return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
-        }else {
-            tripService.save(trip1);
-            return new ResponseEntity<Trip>(trip1,HttpStatus.OK);
-        }
+        Optional<Trip> optionalTrip = tripService.findById(id);
+        Trip trip = optionalTrip.get();
+        return new ResponseEntity<Trip>(trip,HttpStatus.OK);
+
     }
     @PostMapping(value = "/create")
     public ResponseEntity<Void> createTrip(@RequestBody Trip trip){
@@ -47,24 +44,23 @@ public class TripRestController {
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<Trip> updateTrip(@PathVariable Long id, @RequestBody Trip trip){
-        Optional<Trip> trip1 = tripService.findById(id);
-        Trip trip2 = trip1.get();
-        if (trip2 == null){
+        Optional<Trip> optionalTrip = tripService.findById(id);
+        if (!optionalTrip.isPresent()){
             return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
         }else {
-            trip2.setBuses(trip.getBuses());
-            trip2.setDriver(trip.getDriver());
-            trip2.setSubDriver(trip.getSubDriver());
-            trip2.setGuestNumber(trip.getGuestNumber());
-            trip2.setPrice(trip.getPrice());
-            tripService.save(trip2);
-            return new ResponseEntity<Trip>(trip2,HttpStatus.OK);
+            trip.setBuses(trip.getBuses());
+            trip.setDriver(trip.getDriver());
+            trip.setSubDriver(trip.getSubDriver());
+            trip.setGuestNumber(trip.getGuestNumber());
+            trip.setPrice(trip.getPrice());
+            tripService.save(trip);
+            return new ResponseEntity<Trip>(trip,HttpStatus.OK);
         }
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Trip> deleteTrip(@PathVariable Long id){
         Optional<Trip> trip = tripService.findById(id);
-        if (trip == null){
+        if (!trip.isPresent()){
             return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
         }else {
             tripService.remove(id);
@@ -74,23 +70,28 @@ public class TripRestController {
     //findByGuestNumber
     @GetMapping(value = "/find-by-guest-number/{number}")
     public ResponseEntity<Trip> findByGuestNumber(@PathVariable("number") int number ) {
-        Optional<Trip> trip = tripService.findByGuestNumber(number);
-        Trip trip1 = trip.get();
-        if (trip1 == null) {
-            return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<Trip>(trip1, HttpStatus.OK);
-        }
+        Optional<Trip> optionalTrip = tripService.findByGuestNumber(number);
+        return optionalTrip.map(trip -> new ResponseEntity<>(trip, HttpStatus.FOUND))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     //findByPrice
-    @GetMapping(value = "/find-by-price/{ }")
-    public ResponseEntity<Trip> findByPrice(@PathVariable("price") float price ) {
-        Optional<Trip> trip = tripService.findByPrice(price);
-        Trip trip1 = trip.get();
-        if (trip1 == null) {
-            return new ResponseEntity<Trip>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<Trip>(trip1, HttpStatus.OK);
+    @GetMapping(value = "/find-by-price/{price}")
+    public ResponseEntity<List<Trip>> findByPrice(@PathVariable("price") float price ) {
+        List<Trip> tripList=tripService.findByPrice(price);
+        if (tripList.isEmpty()){
+            return new ResponseEntity<List<Trip>>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<List<Trip>>(tripList,HttpStatus.OK);
         }
     }
+//    @GetMapping("/count-trip-by-driver")
+//    public ResponseEntity<List<Trip>> showTripCountList(@RequestBody Long id){
+//        List<Trip>tripList;
+//        tripList = tripService.countTripByDriver(id);
+//        if (tripList.isEmpty()){
+//            return new ResponseEntity<List<Trip>>(HttpStatus.NOT_FOUND);
+//        }else {
+//            return new ResponseEntity<List<Trip>>(tripList, HttpStatus.OK);
+//        }
+//    }
 }
