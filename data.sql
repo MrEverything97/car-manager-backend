@@ -53,7 +53,7 @@ insert into employee(address,birthday,full_name,id_card,id_license,license_type,
 ("Long Bien Ha Noi",'1965-04-09',"Le Hoang Hai",96725,011179095565,"B2",20),
 ("Thanh Tri Ha Noi",'1962-04-09',"Le Van Tam",92525,011119095565,"B2",20),
 ("Hai Ba Trung Ha Noi",'1969-04-30',"Nguyen Van Vy",77525,110179095565,"B2",30);
-insert into trip (guest_number,price,buses_id,driver_id,sub_driver_id) values
+insert into trip (guest_number,price,buses_id,car_id,sub_driver_id) values
 (28,7000000,1,1,2),
 (38,8360000,2,2,3),
 (38,9500000,3,3,2),
